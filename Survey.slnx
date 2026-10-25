@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Src/" />
+  <Folder Name="/Src/01.Domain/">
+    <Project Path="01.Domain/Survey.Domain/Survey.Domain.csproj" />
+  </Folder>
+  <Folder Name="/Src/02.Infrastructure/">
+    <Project Path="02.Infrastructure/Survey.Infrastructure/Survey.Infrastructure.csproj" Id="2f45c673-c01e-4ba6-89af-16118def8ad7" />
+  </Folder>
+  <Project Path="03.Presentation/ConsoleApp1/ConsoleApp1.csproj" />
+</Solution>
