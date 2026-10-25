@@ -7,6 +7,7 @@ namespace Survey.Domain.Entities
     {
         public string Title { get; private set; } = string.Empty;
         private readonly List<Question> _questions = [];
+        private readonly List<SurveyParticipation> _surveyParticipations = [];
 
         public SurveyStatus SurveyStatus { get; private set; }
 
@@ -28,7 +29,7 @@ namespace Survey.Domain.Entities
 
         #region Navigation
         public IReadOnlyCollection<Question> Questions => _questions.AsReadOnly();
-
+        public IReadOnlyCollection<SurveyParticipation> SurveyParticipations => _surveyParticipations.AsReadOnly();
 
         #endregion
 

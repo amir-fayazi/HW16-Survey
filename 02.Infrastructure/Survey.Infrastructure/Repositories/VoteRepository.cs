@@ -15,45 +15,51 @@ namespace Survey.Infrastructure.Repositories
         {
             _context = context;
         }
-        public IReadOnlyCollection<OptionVoteResultDto> GetOptionVotePercentages(int questionId)
+
+
+
+        public IReadOnlyCollection<OptionVoteResultDto>? GetOptionVotePercentages(int questionId)
         {
-            var result = _context.Options
-                .Where(x => x.QuestionId == questionId)
-                .Select(x => new
+            var options = _context.Questions
+                .Where(q => q.Id == questionId)
+                .Select(q => q.Options
+                    .Select(o => new
+                    {
+                        OptionId = o.Id,
+                        OptionText = o.Text,
+                        OptionCount = o.Votes.Count()
+                    })
+                    .ToList())
+                .FirstOrDefault();
+
+            if (options is null)
+                return null;
+
+            var totalVotes = options.Sum(x => x.OptionCount);
+
+            return options
+                .Select(x => new OptionVoteResultDto
                 {
-                    OptionId = x.Id,
-                    OptionText = x.Text,
-                    OptionCount = x.Votes.Count()
-                }).ToList();
-
-            var totalVotes = result.Sum(x => x.OptionCount);
-
-            return result.Select(x => new OptionVoteResultDto
-            {
-                OptionId = x.OptionId,
-                OptionTitle = x.OptionText,
-                Percentage = totalVotes == 0
-                ? 0
-                : x.OptionCount * 100.0 / totalVotes
-            }).ToList();
-                
+                    OptionId = x.OptionId,
+                    OptionTitle = x.OptionText,
+                    Percentage = totalVotes == 0
+                        ? 0
+                        : x.OptionCount * 100.0 / totalVotes
+                })
+                .ToList();
         }
 
 
 
-        public IReadOnlyCollection<Person> GetParticipantsBySurveyId(int surveyId)
+
+        public int? GetVoteCountByOptionId(int optionId)
         {
-            throw new NotImplementedException();
+            return _context.Options
+                 .Where(x => x.Id == optionId)
+                 .Select(x => x.Votes.Count())
+                 .FirstOrDefault();
         }
 
-        public int GetVoteCountByOptionId(int optionId)
-        {
-            throw new NotImplementedException();
-        }
 
-        public bool HasParticipatedInSurvey(int surveyId, int personId)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

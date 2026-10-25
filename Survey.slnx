@@ -6,5 +6,7 @@
   <Folder Name="/Src/02.Infrastructure/">
     <Project Path="02.Infrastructure/Survey.Infrastructure/Survey.Infrastructure.csproj" Id="2f45c673-c01e-4ba6-89af-16118def8ad7" />
   </Folder>
-  <Project Path="03.Presentation/ConsoleApp1/ConsoleApp1.csproj" />
+  <Folder Name="/Src/03.Application/">
+    <Project Path="03.Application/Survey.Application/Survey.Application.csproj" Id="cde54e37-e9be-43a4-9924-a3c51dd7bb09" />
+  </Folder>
 </Solution>

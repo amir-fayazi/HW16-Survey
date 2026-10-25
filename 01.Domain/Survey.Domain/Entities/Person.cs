@@ -6,6 +6,7 @@ namespace Survey.Domain.Entities
     public class Person : BaseEntity
     {
         private readonly List<Vote> _votes = [];
+        private readonly List<SurveyParticipation> _surveyParticipations = [];
 
         public string Username { get; private set; } = string.Empty;
         public string Password { get; private set; } = string.Empty;
@@ -29,6 +30,7 @@ namespace Survey.Domain.Entities
 
         #region Navigation
         public IReadOnlyCollection<Vote> Votes => _votes.AsReadOnly();
+        public IReadOnlyCollection<SurveyParticipation> SurveyParticipations => _surveyParticipations.AsReadOnly();
         
 
 
