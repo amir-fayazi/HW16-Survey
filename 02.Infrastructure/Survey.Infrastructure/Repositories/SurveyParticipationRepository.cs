@@ -15,5 +15,11 @@ namespace Survey.Infrastructure.Repositories
         {
             return _context.SurveyParticipations.Any(x => x.PersonId == personId && x.SurveyId == surveyId);
         }
+
+        public int GetParticipantCountBySurveyId(int surveyId)
+        {
+            return _context.SurveyParticipations
+                 .Count(x => x.SurveyId == surveyId);
+        }
     }
 }

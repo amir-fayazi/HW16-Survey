@@ -17,27 +17,6 @@ namespace Survey.Infrastructure.Repositories
         }
         public IReadOnlyCollection<OptionVoteResultDto> GetOptionVotePercentages(int questionId)
         {
-            //var result = _context.Votes
-            //    .Where(x => x.QuestionId == questionId)
-            //    .GroupBy(x => x.OptionId)
-            //    .Select(x => new
-            //    {
-            //        OptionId = x.Key,
-            //        OptionText = x.First().Option.Text,
-            //        VoteCount = x.Count()
-            //    }).ToList();
-
-            //var totalVotes = result.Sum(x => x.VoteCount);
-
-            //return result.Select(x => new OptionVoteResultDto
-            //{
-            //    OptionId = x.OptionId,
-            //    OptionTitle = x.OptionText,
-            //    Percentage = totalVotes == 0
-            //    ? 0
-            //    : x.VoteCount * 100.0 / totalVotes
-            //}).ToList();
-
             var result = _context.Options
                 .Where(x => x.QuestionId == questionId)
                 .Select(x => new
@@ -60,10 +39,7 @@ namespace Survey.Infrastructure.Repositories
                 
         }
 
-        public int GetParticipantCountBySurveyId(int surveyId)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public IReadOnlyCollection<Person> GetParticipantsBySurveyId(int surveyId)
         {
